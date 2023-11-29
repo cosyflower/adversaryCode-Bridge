@@ -10,6 +10,10 @@ public class RetryRequest {
         this.retryRequest = retryRequest;
     }
 
+    public Retry toRetry() {
+        return Retry.from(retryRequest);
+    }
+
     private void validateRetryRequest(String retryRequest) {
         isNullOrEmpty(retryRequest);
         hasWordPattern(retryRequest);
@@ -25,7 +29,7 @@ public class RetryRequest {
         if (PatternRegex.WORD_PATTERN.matcher(retryRequest).matches()) {
             return;
         }
-        throw new IllegalArgumentException("문자를 입력해주세요.");
+        throw new IllegalArgumentException("문자를 입력하지 않았습니다.");
     }
 
 
