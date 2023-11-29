@@ -23,4 +23,8 @@ public class Bridge {
         }
         return false;
     }
+
+    public int getBridgeLength() {
+        return bridgeValues.size();
+    }
 }
