@@ -11,7 +11,7 @@ public class BridgeLengthRequest {
         this.bridgeLengthRequest = bridgeLengthRequest;
     }
 
-    public BridgeLength toBridgeLenth() {
+    public BridgeLength toBridgeLength() {
         return BridgeLength.from(Converter.convertStringToNumber(bridgeLengthRequest));
     }
 
