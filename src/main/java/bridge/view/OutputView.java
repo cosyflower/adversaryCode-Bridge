@@ -2,20 +2,25 @@ package bridge.view;
 
 import bridge.system.PlayerChoice;
 import bridge.view.pathPrinter.CurrentPathPrinter;
+import bridge.view.pathPrinter.DownPathPrinter;
+import bridge.view.pathPrinter.UpPathPrinter;
 import java.util.Map;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
-    private final CurrentPathPrinter currentPathPrinter;
+    private CurrentPathPrinter currentPathPrinter;
 
     public OutputView(CurrentPathPrinter currentPathPrinter) {
         this.currentPathPrinter = currentPathPrinter;
     }
 
     public void printMap(Map<PlayerChoice, Boolean> currentPath) {
+        currentPathPrinter = new CurrentPathPrinter(new DownPathPrinter(), new UpPathPrinter());
         for (PlayerChoice playerChoice : currentPath.keySet()) {
+            System.out.println("playerChoice.getDigitValue() = " + playerChoice.getDigitValue());
+            System.out.println("playerChoice.getUpOrDown() = " + playerChoice.getUpOrDown());
             if (playerChoice.isFirstChoice()) {
                 currentPathPrinter.initUpOrDown(playerChoice, currentPath.get(playerChoice));
                 continue;

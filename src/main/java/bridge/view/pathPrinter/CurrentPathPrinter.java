@@ -14,27 +14,27 @@ public class CurrentPathPrinter {
 
     public void checkUpOrDownWhenRight(PlayerChoice playerChoice) {
         if (playerChoice.isDown()) {
-            upPrinter.printWhiteSpace();
+            upPrinter.appendWhiteSpace();
             downPrinter.appendRightPath();
             return;
         }
 
         if (playerChoice.isUp()) {
             upPrinter.appendRightPath();
-            downPrinter.printWhiteSpace();
+            downPrinter.appendWhiteSpace();
         }
     }
 
     public void checkUpOrDownWhenWrong(PlayerChoice playerChoice) {
         if (playerChoice.isDown()) {
-            upPrinter.printWhiteSpace();
+            upPrinter.appendWhiteSpace();
             downPrinter.appendWrongPath();
             return;
         }
 
         if (playerChoice.isUp()) {
             upPrinter.appendWrongPath();
-            downPrinter.printWhiteSpace();
+            downPrinter.appendWhiteSpace();
         }
     }
 

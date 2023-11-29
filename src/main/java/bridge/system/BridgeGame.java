@@ -2,9 +2,7 @@ package bridge.system;
 
 import bridge.view.InputView;
 import bridge.view.OutputView;
-import bridge.view.pathPrinter.CurrentPathPrinter;
-import bridge.view.pathPrinter.DownPathPrinter;
-import bridge.view.pathPrinter.UpPathPrinter;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BridgeGame {
@@ -16,10 +14,9 @@ public class BridgeGame {
     private int autoDigit;
     private int tryTotal;
 
-    private BridgeGame(Bridge bridge, Map<PlayerChoice, Boolean> currentPath, OutputView outputView,
-                       InputView inputView) {
+    private BridgeGame(Bridge bridge, OutputView outputView, InputView inputView) {
         this.bridge = bridge;
-        this.currentPath = currentPath;
+        this.currentPath = new LinkedHashMap<>();
         this.outputView = outputView;
         this.inputView = inputView;
         initBridgeGame();
@@ -27,12 +24,16 @@ public class BridgeGame {
 
     private void initBridgeGame() {
         autoDigit = 0;
-        tryTotal = 0;
+        tryTotal = 1;
     }
 
-    public static BridgeGame from(Bridge bridge, Map<PlayerChoice, Boolean> currentPath,
-                                  OutputView outputView, InputView inputView) {
-        return new BridgeGame(bridge, currentPath, outputView, inputView);
+    public static BridgeGame from(Bridge bridge, OutputView outputView, InputView inputView) {
+        return new BridgeGame(bridge, outputView, inputView);
+    }
+
+    public void startGame() {
+        PlayerChoice playerChoice = createPlayerChoice();
+        checkBridgeAndChoice(playerChoice);
     }
 
     public void checkBridgeAndChoice(PlayerChoice playerChoice) {
@@ -59,25 +60,25 @@ public class BridgeGame {
     private void askAnotherMove() {
         autoDigit++;
         PlayerChoice playerChoice = createPlayerChoice();
-        tryTotal++;
         checkBridgeAndChoice(playerChoice);
     }
 
     private void restartGame() {
-        autoDigit = 0;
-        PlayerChoice playerChoice = createPlayerChoice();
         tryTotal++;
+        autoDigit = 0;
+        currentPath.clear();
+        PlayerChoice playerChoice = createPlayerChoice();
         checkBridgeAndChoice(playerChoice);
     }
 
     private PlayerChoice createPlayerChoice() {
-        String anotherMove = new InputView().inputMove();
+        String anotherMove = new InputView().readMoving();
         PlayerChoice playerChoice = PlayerChoice.of(anotherMove, Digit.from(autoDigit));
         return playerChoice;
     }
 
     private void showCurrentPath() {
-        new OutputView(new CurrentPathPrinter(new DownPathPrinter(), new UpPathPrinter())).printMap(currentPath);
+        outputView.printMap(currentPath);
     }
 
     private void askTerminate() {

@@ -38,7 +38,7 @@ public class PathPrinter {
         stringBuilder.append("X");
     }
 
-    public void printWhiteSpace() {
+    public void appendWhiteSpace() {
         printSeparator();
         stringBuilder.append(" ");
     }

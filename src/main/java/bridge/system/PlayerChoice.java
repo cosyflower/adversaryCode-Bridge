@@ -26,10 +26,10 @@ public class PlayerChoice {
     }
 
     public boolean isDown() {
-        return upOrDown == "D";
+        return upOrDown.equals("D");
     }
 
     public boolean isUp() {
-        return upOrDown == "U";
+        return upOrDown.equals("U");
     }
 }
