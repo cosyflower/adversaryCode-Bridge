@@ -1,7 +1,9 @@
-package bridge;
+package bridge.generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.generator.BridgeMaker;
+import bridge.generator.BridgeNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

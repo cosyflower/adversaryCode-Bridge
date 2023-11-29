@@ -1,7 +1,10 @@
-package bridge;
+package bridge.system;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import bridge.generator.BridgeMaker;
+import bridge.system.Bridge;
+import bridge.system.PlayerChoice;
 import org.junit.jupiter.api.Test;
 
 public class BridgeTest {

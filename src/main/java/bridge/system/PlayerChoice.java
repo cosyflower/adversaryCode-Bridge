@@ -1,4 +1,4 @@
-package bridge;
+package bridge.system;
 
 public class PlayerChoice {
     private final String upOrDown;
