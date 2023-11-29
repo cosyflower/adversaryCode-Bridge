@@ -41,4 +41,12 @@ public class OutputView {
         System.out.println("실패");
         System.out.printf("총 시도한 횟수: %d\n", tryTotal);
     }
+
+    public void showStartingMessage() {
+        System.out.println("다리 건너기 게임을 시작합니다.");
+    }
+
+    public void printLine() {
+        System.out.println();
+    }
 }
