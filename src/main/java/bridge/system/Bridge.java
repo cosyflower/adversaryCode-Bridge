@@ -15,10 +15,10 @@ public class Bridge {
     }
 
     public boolean hasSameValueAtIndex(PlayerChoice playerChoice) {
-        int digit = playerChoice.getDigit();
+        int digitValue = playerChoice.getDigitValue();
         String upOrDown = playerChoice.getUpOrDown();
 
-        if (bridgeValues.get(digit).equals(upOrDown)) {
+        if (bridgeValues.get(digitValue).equals(upOrDown)) {
             return true;
         }
         return false;
