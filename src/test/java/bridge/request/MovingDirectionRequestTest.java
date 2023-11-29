@@ -34,9 +34,9 @@ public class MovingDirectionRequestTest {
         class MovingDirectionRequest_Test {
             @Test
             void flow() {
-                Assertions.assertThatCode(() -> new MovingDirectionRequest(""))
+                Assertions.assertThatCode(() -> new MovingDirectionRequest("|"))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessageContaining("아무것도");
+                        .hasMessageContaining("문자를 입력하지 않았습니다.");
             }
         }
 
