@@ -21,4 +21,8 @@ public class BridgeLength {
             throw new IllegalArgumentException("범위에서 벗어난 수입니다.");
         }
     }
+
+    public int getBridgeLengthValue() {
+        return bridgeLengthValue;
+    }
 }
