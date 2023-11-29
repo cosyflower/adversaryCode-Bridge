@@ -18,9 +18,9 @@ public class PlayerChoiceTest {
         });
 
         List<String> bridge = bridgeMaker.makeBridge(3);
-        PlayerChoice playerChoice = PlayerChoice.of( "D",0);
+        PlayerChoice playerChoice = PlayerChoice.of("D", Digit.from(0));
 
-        Boolean result = bridge.get(playerChoice.getDigit()) == playerChoice.getUpOrDown();
+        Boolean result = bridge.get(playerChoice.getDigitValue()) == playerChoice.getUpOrDown();
         Assertions.assertThat(result).isEqualTo(true);
     }
 }
