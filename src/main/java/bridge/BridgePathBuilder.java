@@ -1,36 +1,32 @@
 package bridge;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BridgePathBuilder {
     private final StringBuilder pathBuilder;
-    private final Map<PlayerChoice, Boolean> playerChoiceBooleanMap;
+    private final List<ResultMatch> finalResultMatches;
 
-    private BridgePathBuilder(Map<PlayerChoice, Boolean> playerMap){
+    private BridgePathBuilder(List<ResultMatch> resultMatches){
         pathBuilder = new StringBuilder();
-        playerChoiceBooleanMap = Collections.unmodifiableMap(playerMap);
+        finalResultMatches = new ArrayList<>(resultMatches);
     }
 
-    public static BridgePathBuilder from(Map<PlayerChoice, Boolean> playerMap) {
-        return new BridgePathBuilder(playerMap);
+    public static BridgePathBuilder from(List<ResultMatch> resultMatches) {
+        return new BridgePathBuilder(resultMatches);
     }
 
     public String buildSpecificPath(String playerChoiceValue) {
         pathBuilder.setLength(0);
-
-        for (PlayerChoice playerChoice : playerChoiceBooleanMap.keySet()) {
-            Boolean rightOrWrong = playerChoiceBooleanMap.get(playerChoice);
-            if (playerChoice.hasSameValue(playerChoiceValue)) {
-                checkRightOrWrong(rightOrWrong);
+        for (ResultMatch finalResultMatch : finalResultMatches) {
+            if (finalResultMatch.hasSameValue(playerChoiceValue)) {
+                checkRightOrWrong(finalResultMatch);
                 continue;
             }
             appendWithSpace();
         }
-
         return joinSeparatorInPath(pathBuilder.toString());
     }
 
@@ -46,8 +42,8 @@ public class BridgePathBuilder {
         return String.join(" | ", convertedStringList);
     }
 
-    private void checkRightOrWrong(Boolean rightOrWrong) {
-        if (rightOrWrong) {
+    private void checkRightOrWrong(ResultMatch resultMatch) {
+        if (resultMatch.isRight()) {
             pathBuilder.append("O");
             return;
         }
