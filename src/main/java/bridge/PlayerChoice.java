@@ -7,11 +7,11 @@ public class PlayerChoice {
         this.playerChoiceValue = playerChoiceValue;
     }
 
-    public String getPlayerChoiceValue() {
-        return playerChoiceValue;
-    }
-
     public boolean hasSameValue(String otherPlayerChoiceValue) {
         return playerChoiceValue.equals(otherPlayerChoiceValue);
+    }
+
+    public String getPlayerChoiceValue() {
+        return playerChoiceValue;
     }
 }
